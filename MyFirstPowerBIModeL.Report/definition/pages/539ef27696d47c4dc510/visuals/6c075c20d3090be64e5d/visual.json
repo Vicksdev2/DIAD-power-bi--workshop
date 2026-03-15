@@ -2,123 +2,19 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "6c075c20d3090be64e5d",
   "position": {
-    "x": 510.46656541425955,
-    "y": 50.00014194262679,
+    "x": 0,
+    "y": 400,
     "z": 2000,
-    "height": 310.46599764375236,
-    "width": 583.72258733020112,
+    "height": 320,
+    "width": 576,
     "tabOrder": 2000
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "lineStackedColumnComboChart",
     "query": {
       "queryState": {
         "Category": {
           "projections": [
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "Date"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "Date"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Year"
-                }
-              },
-              "queryRef": "Date.Date.Variation.Date Hierarchy.Year",
-              "nativeQueryRef": "Date Year",
-              "active": true
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "Date"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "Date"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Quarter"
-                }
-              },
-              "queryRef": "Date.Date.Variation.Date Hierarchy.Quarter",
-              "nativeQueryRef": "Date Quarter",
-              "active": false
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "Date"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "Date"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Month"
-                }
-              },
-              "queryRef": "Date.Date.Variation.Date Hierarchy.Month",
-              "nativeQueryRef": "Date Month",
-              "active": false
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "Date"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "Date"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Day"
-                }
-              },
-              "queryRef": "Date.Date.Variation.Date Hierarchy.Day",
-              "nativeQueryRef": "Date Day",
-              "active": false
-            },
             {
               "field": {
                 "HierarchyLevel": {
@@ -247,8 +143,80 @@
               "nativeQueryRef": "Sum of Revenue"
             }
           ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "% Growth"
+                }
+              },
+              "queryRef": "Sales.% Growth",
+              "nativeQueryRef": "% Growth"
+            }
+          ]
         }
       }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sales.% Growth"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sum of Revenue and % Growth per year'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   },
@@ -300,123 +268,52 @@
         "howCreated": "User"
       },
       {
-        "name": "34be361ecba2b5b7c2c8",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Sales"
+        "name": "d5259750e4a0e6d0854e",
+        "type": "Exclude",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "l",
+              "Entity": "LocalDateTable_dfcdf55d-5eae-49f6-85fc-4683a1d117aa",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "l"
+                              }
+                            },
+                            "Property": "Year"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "2022L"
+                            }
+                          }
+                        ]
+                      ]
+                    }
                   }
-                },
-                "Property": "Revenue"
+                }
               }
-            },
-            "Function": 0
-          }
+            }
+          ]
         },
-        "type": "Advanced"
-      },
-      {
-        "name": "85b5fe0d297b42916c0c",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Date"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "Date"
-                  }
-                },
-                "Hierarchy": "Date Hierarchy"
-              }
-            },
-            "Level": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e94ed42074012aec05aa",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Date"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "Date"
-                  }
-                },
-                "Hierarchy": "Date Hierarchy"
-              }
-            },
-            "Level": "Quarter"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "14145bc72604e4946706",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Date"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "Date"
-                  }
-                },
-                "Hierarchy": "Date Hierarchy"
-              }
-            },
-            "Level": "Month"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "41f0cf941bb68cc55580",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "Date"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "Date"
-                  }
-                },
-                "Hierarchy": "Date Hierarchy"
-              }
-            },
-            "Level": "Day"
-          }
-        },
-        "type": "Advanced"
+        "howCreated": "Exclude"
       }
     ]
   }

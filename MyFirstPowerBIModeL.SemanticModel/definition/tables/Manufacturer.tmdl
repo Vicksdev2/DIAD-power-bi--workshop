@@ -26,6 +26,7 @@ table Manufacturer
 	column Logo
 		dataType: string
 		lineageTag: 2fbda30a-90df-4720-8be7-4ccfbb348235
+		dataCategory: ImageUrl
 		summarizeBy: none
 		sourceColumn: Logo
 

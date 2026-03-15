@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "3a84939648830b238bc9",
   "position": {
-    "x": 630.2343472768307,
-    "y": 360.46613958637914,
+    "x": 624,
+    "y": 176,
     "z": 2003,
-    "height": 256.97747370512838,
-    "width": 618.60640729017325,
+    "height": 208,
+    "width": 624,
     "tabOrder": 2003
   },
   "visual": {
@@ -53,7 +53,7 @@
               },
               "queryRef": "Product.Product Herarchy.Segment",
               "nativeQueryRef": "Product Herarchy Segment",
-              "active": true
+              "active": false
             },
             {
               "field": {
@@ -73,7 +73,7 @@
               },
               "queryRef": "Product.Product Herarchy.Product",
               "nativeQueryRef": "Product Herarchy Product",
-              "active": true
+              "active": false
             }
           ]
         },
@@ -151,11 +151,11 @@
                       "Entity": "Sales"
                     }
                   },
-                  "Property": "PY Sales"
+                  "Property": "% Growth"
                 }
               },
-              "queryRef": "Sales.PY Sales",
-              "nativeQueryRef": "PY Sales"
+              "queryRef": "Sales.% Growth",
+              "nativeQueryRef": "% Growth"
             },
             {
               "field": {
@@ -165,11 +165,11 @@
                       "Entity": "Sales"
                     }
                   },
-                  "Property": "% Growth"
+                  "Property": "PY Sales"
                 }
               },
-              "queryRef": "Sales.% Growth",
-              "nativeQueryRef": "% Growth"
+              "queryRef": "Sales.PY Sales",
+              "nativeQueryRef": "PY Sales"
             }
           ]
         }
@@ -244,44 +244,94 @@
             "isPinned": true
           }
         ],
-        "root": {
-          "children": [
-            {
-              "identityValues": [
-                {
-                  "Literal": {
-                    "Value": "'Rural'"
-                  }
-                }
-              ],
-              "isToggled": true
-            },
-            {
-              "identityValues": [
-                {
-                  "Literal": {
-                    "Value": "'Urban'"
-                  }
-                }
-              ],
-              "isToggled": true,
-              "children": [
-                {
-                  "identityValues": [
-                    {
-                      "Literal": {
-                        "Value": "'Extreme'"
-                      }
-                    }
-                  ],
-                  "isToggled": true
-                }
-              ]
-            }
-          ]
-        }
+        "root": {}
       }
     ],
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Sales"
+                            }
+                          },
+                          "Property": "% Growth"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient3": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#a0d1ff'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "0D"
+                              }
+                            }
+                          },
+                          "mid": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#e1c233'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "0.5D"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#609CD5'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "1D"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Sales.% Growth"
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
@@ -407,7 +457,7 @@
         "type": "Categorical"
       },
       {
-        "name": "385f328aa1ac07742d21",
+        "name": "2db734bc9a2a82dc9d24",
         "field": {
           "Measure": {
             "Expression": {
@@ -415,7 +465,7 @@
                 "Entity": "Sales"
               }
             },
-            "Property": "PY Sales"
+            "Property": "% Growth"
           }
         },
         "type": "Advanced"
