@@ -1,6 +1,16 @@
 table Sales
 	lineageTag: efec2018-d249-47f1-b7be-01066590dd59
 
+	measure 'PY Sales' = CALCULATE(SUM(Sales[Revenue]), SAMEPERIODLASTYEAR('Date'[Date]))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 5bc36083-9fbe-4aef-a4e2-cfeedd936759
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '% Growth' = DIVIDE(SUM(Sales[Revenue]) - [PY Sales], [PY Sales])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3b946330-f737-4b56-b2a2-b288f5ccb546
+
 	column ProductID
 		dataType: int64
 		isHidden
@@ -49,13 +59,12 @@ table Sales
 
 	column Revenue
 		dataType: decimal
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		lineageTag: e799053b-0928-4d61-98e9-60b8bb2e78b0
 		summarizeBy: sum
 		sourceColumn: Revenue
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column ZipCountry = Sales[Zip] & "," & Sales[Country]
 		isHidden

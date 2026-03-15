@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "ebc9b669cab6ae04d165",
   "position": {
-    "x": 10.977738320574884,
-    "y": 20.58325935107791,
+    "x": 0,
+    "y": 21.02813334246013,
     "z": 0,
-    "height": 299.1433692356656,
-    "width": 491.25378984572609,
+    "height": 298.59949346293382,
+    "width": 492.058320213567,
     "tabOrder": 0
   },
   "visual": {
@@ -29,6 +29,36 @@
               "queryRef": "Geography.Country",
               "nativeQueryRef": "Country",
               "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geography"
+                    }
+                  },
+                  "Property": "State"
+                }
+              },
+              "queryRef": "Geography.State",
+              "nativeQueryRef": "State",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Geography"
+                    }
+                  },
+                  "Property": "District"
+                }
+              },
+              "queryRef": "Geography.District",
+              "nativeQueryRef": "District",
+              "active": false
             }
           ]
         },

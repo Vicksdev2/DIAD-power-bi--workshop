@@ -68,6 +68,21 @@ table Product
 
 		annotation SummarizationSetBy = Automatic
 
+	hierarchy 'Product Herarchy'
+		lineageTag: b06ff2e8-cb27-4490-b651-2451d66d9635
+
+		level Category
+			lineageTag: 7de9d097-1409-4a38-8279-6b5296fed27f
+			column: Category
+
+		level Segment
+			lineageTag: 30775fd4-1637-461d-a328-3e92b9eb2bb1
+			column: Segment
+
+		level Product
+			lineageTag: af6a5ba1-4937-4960-9e03-6c02e1096bbd
+			column: Product
+
 	partition Product = m
 		mode: import
 		source =
