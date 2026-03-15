@@ -1,0 +1,92 @@
+table Product
+	lineageTag: 53ba4230-92f5-4ab6-8a3d-10f3a624f911
+
+	column ProductID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5949111e-87f4-48eb-a298-6d847d422731
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: e97470f6-4270-4f35-8533-218e98ac1bbe
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 853c527b-709e-478d-a205-419d4acfb2ac
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: cf3af70a-e910-48a7-8cdf-eea30739126a
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column ManufacturerID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 396e9fbb-1742-4c46-b734-990677009ce9
+		summarizeBy: none
+		sourceColumn: ManufacturerID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSRP
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 98c70ac0-b234-457c-9ff4-99b6a37c170f
+		summarizeBy: sum
+		sourceColumn: MSRP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Currency
+		dataType: string
+		lineageTag: da1376e1-099e-4016-b93f-7cc2fcde1fe3
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\DIAD\DIAD Student (1)\Data\USSales\bi_dimensions.xlsx"), null, true),
+				    Product_Table_Table = Source{[Item="Product_Table",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Product_Table_Table,{{"ProductID", Int64.Type}, {"Product", type text}, {"Category", type text}, {"ManufacturerID", Int64.Type}, {"Price", type text}}),
+				    #"Filled Down" = Table.FillDown(#"Changed Type",{"Category"}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Filled Down", "Product", Splitter.SplitTextByEachDelimiter({"|"}, QuoteStyle.Csv, false), {"Product.1", "Product.2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Product.1", type text}, {"Product.2", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"Product.1", "Product"}, {"Product.2", "Segment"}}),
+				    #"Inserted Text After Delimiter" = Table.AddColumn(#"Renamed Columns", "MSRP", each Text.AfterDelimiter([Price], " "), type text),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Inserted Text After Delimiter",{{"MSRP", Currency.Type}}),
+				    #"Inserted Text Before Delimiter" = Table.AddColumn(#"Changed Type2", "Currency", each Text.BeforeDelimiter([Price], " "), type text),
+				    #"Removed Columns" = Table.RemoveColumns(#"Inserted Text Before Delimiter",{"Price"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

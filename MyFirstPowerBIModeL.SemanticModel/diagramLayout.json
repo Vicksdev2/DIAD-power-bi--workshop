@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 424.29871653997668,
+            "y": 541.481129877453
+          },
+          "nodeIndex": "Sales",
+          "nodeLineageTag": "efec2018-d249-47f1-b7be-01066590dd59",
+          "size": {
+            "height": 284.55998883433358,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 27.858705374310205,
+            "y": 274.196672714736
+          },
+          "nodeIndex": "Geography",
+          "nodeLineageTag": "b94ad079-c8d5-4019-99e0-2e674fa539b6",
+          "size": {
+            "height": 302.92265624537805,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 838.54126671152392,
+            "y": 371.35928429744831
+          },
+          "nodeIndex": "Manufacturer",
+          "nodeLineageTag": "0bf628b1-6d7c-4b99-92e9-67e6be1dfd74",
+          "size": {
+            "height": 177.36799665030003,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 453.0692801103234,
+            "y": 121.90731723616426
+          },
+          "nodeIndex": "Product",
+          "nodeLineageTag": "53ba4230-92f5-4ab6-8a3d-10f3a624f911",
+          "size": {
+            "height": 246.5906668527611,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 801.5412667115238,
+            "y": 664.86058171455466
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "03459f3b-d853-46e1-88ad-1e217b2c9d5a",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70.955543900968948,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

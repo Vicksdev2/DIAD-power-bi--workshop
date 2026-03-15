@@ -1,0 +1,98 @@
+table Sales
+	lineageTag: efec2018-d249-47f1-b7be-01066590dd59
+
+	column ProductID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: beb0430b-3124-4312-a8d5-09cf9916e3fa
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: a561aded-3c66-4759-8b70-609f295becbc
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Zip
+		dataType: string
+		isHidden
+		lineageTag: 4e312082-f306-474b-9888-ba57186a8168
+		summarizeBy: none
+		sourceColumn: Zip
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Units
+		dataType: int64
+		formatString: 0
+		lineageTag: b28e4364-1501-4591-8b74-f3cc5cbd72b4
+		summarizeBy: sum
+		sourceColumn: Units
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revenue
+		dataType: decimal
+		lineageTag: e799053b-0928-4d61-98e9-60b8bb2e78b0
+		summarizeBy: sum
+		sourceColumn: Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ZipCountry = Sales[Zip] & "," & Sales[Country]
+		isHidden
+		lineageTag: 6fdd129e-07da-46c7-9df1-aa2fdb86886e
+		summarizeBy: none
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		isHidden
+		lineageTag: a8bbc471-cc7b-4798-aba9-6dc03eb67498
+		summarizeBy: none
+		sourceColumn: Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\DIAD\DIAD Student (1)\Data\USSales\Sales.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductID", Int64.Type}, {"Date", type date}, {"Zip", type text}, {"Units", Int64.Type}, {"Revenue", type number}}),
+				    #"Appended Query" = Table.Combine({#"Changed Type", InternationalSales}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Appended Query", "Custom", each if [Country] = null then "USA" else [Country]),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Conditional Column",{"Country"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Custom", "Country"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"Revenue", Currency.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,90 @@
+table Manufacturer
+	lineageTag: 0bf628b1-6d7c-4b99-92e9-67e6be1dfd74
+
+	column ManufacturerID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9fea1dab-a9c2-49a5-995e-6558ef157239
+		summarizeBy: none
+		sourceColumn: ManufacturerID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manufacturer
+		dataType: string
+		lineageTag: 59f1ccfe-232e-4bb0-b9a2-a005b416bc91
+		summarizeBy: none
+		sourceColumn: Manufacturer
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Manufacturer","TableItemName":"Manufacturer (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column Logo
+		dataType: string
+		lineageTag: 2fbda30a-90df-4720-8be7-4ccfbb348235
+		summarizeBy: none
+		sourceColumn: Logo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Manufacturer (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Manufacturer'[Manufacturer]),
+				"(Blank)",
+				'Manufacturer'[Manufacturer] IN {"Fabrikam, Inc.",
+					"Nod Publishers",
+					"Tailwind Traders",
+					"Wide World Importers"},
+				"Top competitor",
+				'Manufacturer'[Manufacturer] IN {"VanArsdel, Ltd."},
+				"VanArsdel, Ltd.",
+				"Other"
+			)
+		lineageTag: e4479f34-57ad-470f-bc42-c57596e0cb4b
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Manufacturer"
+				          }
+				        },
+				        "Property": "Manufacturer"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"m","Entity":"Manufacturer"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"m"}},"Property":"Manufacturer"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Top competitor","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"m"}},"Property":"Manufacturer"}}],"Values":[[{"Literal":{"Value":"'Fabrikam, Inc.'"}}],[{"Literal":{"Value":"'Nod Publishers'"}}],[{"Literal":{"Value":"'Tailwind Traders'"}}],[{"Literal":{"Value":"'Wide World Importers'"}}]]}}},{"DisplayName":"VanArsdel, Ltd.","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"m"}},"Property":"Manufacturer"}}],"Values":[[{"Literal":{"Value":"'VanArsdel, Ltd.'"}}]]}}},{"DisplayName":"Other"}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Manufacturer = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\DIAD\DIAD Student (1)\Data\USSales\bi_dimensions.xlsx"), null, true),
+				    manufacturer_Sheet = Source{[Item="manufacturer",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(manufacturer_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Column1", type text}, {"Column2", type any}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}}),
+				    #"Transposed Table" = Table.Transpose(#"Changed Type"),
+				    #"Promoted Headers1" = Table.PromoteHeaders(#"Transposed Table", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"ManufacturerID", Int64.Type}, {"Manufacturer", type text}, {"Logo", type text}, {"Column4", type any}, {"Column5", type any}, {"List of Suppliers and Manufacturers ", type any}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"Column4", "Column5", "List of Suppliers and Manufacturers "})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

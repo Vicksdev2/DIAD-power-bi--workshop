@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "MyFirstPowerBIModeL"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4cf2c71c-8157-4907-9888-19d5d391b4d2"
+  }
+}

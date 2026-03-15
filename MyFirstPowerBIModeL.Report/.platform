@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "MyFirstPowerBIModeL"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5a95b603-a063-47c4-8aae-11f34239ec6f"
+  }
+}
