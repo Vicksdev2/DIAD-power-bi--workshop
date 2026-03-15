@@ -48,6 +48,9 @@
       }
     ]
   },
+  "publicCustomVisuals": [
+    "PBI_CV_16948668_E17D_454B_8664_2F2C470EA8C1"
+  ],
   "resourcePackages": [
     {
       "name": "SharedResources",
@@ -68,6 +71,16 @@
           "name": "Auto_generated_by_Chucks_tool6882821933950591.json",
           "path": "Auto_generated_by_Chucks_tool6882821933950591.json",
           "type": "CustomTheme"
+        },
+        {
+          "name": "Background48168928431797997.jpg",
+          "path": "Background48168928431797997.jpg",
+          "type": "Image"
+        },
+        {
+          "name": "VanArsdel_Logo9407860642028322.png",
+          "path": "VanArsdel_Logo9407860642028322.png",
+          "type": "Image"
         }
       ]
     }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "d5120d671da44098398d",
   "position": {
-    "x": 604.55883359572874,
-    "y": 23.130946676706142,
+    "x": 753.4676018854733,
+    "y": 125.75114459054106,
     "z": 2001,
-    "height": 128.27161338900677,
-    "width": 675.00308029297014,
+    "height": 91.455377884029858,
+    "width": 468.70881165565305,
     "tabOrder": 2001
   },
   "visual": {
@@ -100,7 +100,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'https://raw.githubusercontent.com/PragmaticWorksTraining/DIAD/main/Logos/TailwindTraders.png'"
+                                "Value": "'https://raw.githubusercontent.com/PragmaticWorksTraining/DIAD/main/Logos/NodPublishers.png'"
                               }
                             }
                           ]
