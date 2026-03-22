@@ -1,10 +1,18 @@
-Dashboard in a Day (DIAD) - Microsoft Workshop
-This project is part of the official Microsoft learning path for developing Business Intelligence solutions with Power BI. Through this lab, I have implemented the complete end-to-end data analysis workflow.
+## Dashboard in a Day (DIAD) - Microsoft Workshop
 
-📈 Project Overview
+</br>
+This project is part of the official Microsoft learning path for developing Business Intelligence solutions with Power BI. Through this lab, I have implemented the complete end-to-end data analysis workflow.
+</br>
+
+</br>
+
+### 📈 Project Overview
 The primary goal is to analyze sales data from a manufacturing company (VanArsdel Ltd) to identify market trends, compare performance against competitors, and evaluate regional growth.
 
-🛠️ Technical Skills Applied
+</br>
+
+
+### 🛠️ Technical Skills Applied
 ETL with Power Query: Data cleaning, type transformation, merging tables from multiple sources (CSV and Excel), and creating dimension tables.
 
 Data Modeling: Implementation of a Star Schema, managing relationships (1:N), and configuring hierarchies.
@@ -12,13 +20,21 @@ Data Modeling: Implementation of a Star Schema, managing relationships (1:N), an
 DAX (Data Analysis Expressions): Creating calculated measures for variance analysis, Year-over-Year (YoY) growth, and market share calculations.
 
 Visualization: Designing interactive dashboards following data storytelling and UX principles.
+</br>
 
-📸 Report Preview
-![Texto descriptivo]("C:\DIAD\Powerbiproject\Visual\diad.jfif")
+</br>
+
+### 📸 Report Preview
+</br>
+
+<img width="2000" height="1097" alt="pb pdf" src="https://github.com/user-attachments/assets/c571ef30-d1b5-4063-8eae-cb9fa8783c12" />
 
 
+</br>
 
-📁 Repository Structure
+</br>
+
+### 📁 Repository Structure
 This repository utilizes the new Power BI Project (.pbip) format, allowing for more granular version control:
 
 *.SemanticModel: Contains the data model definitions and DAX measures.
